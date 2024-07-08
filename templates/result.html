@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LangChain Query Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1> My ChatBot </h1>
+        <p><strong>Query:</strong> {{ query }}</p>
+        <p><strong>Response:</strong> {{ response }}</p>
+        <a href="/" class="button">Back to home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LangChain ChatBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        async function sendMessage(event) {
+            event.preventDefault();
+
+            const queryInput = document.getElementById('query');
+            const query = queryInput.value;
+            if (!query) return;
+
+            const chatWindow = document.querySelector('.chat-window');
+            const userMessageHtml = `<div class="chat-message user-message"><div class="message-content">${query}</div></div>`;
+            chatWindow.innerHTML += userMessageHtml;
+            chatWindow.innerHTML += `<div class="chat-message bot-message" id="typing-indicator"><div class="message-content">Bot is typing...</div></div>`;
+            queryInput.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            const response = await fetch('/query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query }),
+            });
+
+            const data = await response.json();
+            document.getElementById('typing-indicator').remove();
+
+            const botMessageHtml = `<div class="chat-message bot-message"><div class="message-content">${data.response}</div></div>`;
+            chatWindow.innerHTML += botMessageHtml;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-window">
+            {% for entry in chat_history %}
+                <div class="chat-message user-message">
+                    <div class="message-content">
+                        {{ entry.user }}
+                    </div>
+                </div>
+                <div class="chat-message bot-message">
+                    <div class="message-content">
+                        {{ entry.bot }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <form class="chat-form" onsubmit="sendMessage(event)">
+            <input type="text" id="query" name="query" placeholder="Type your message here..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
