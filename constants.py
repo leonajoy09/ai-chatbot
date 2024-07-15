@@ -1,1 +1,1 @@
-APIKEY = "sk-proj-8gosgQLsvWUoF6g4iPgnT3BlbkFJZHxOCpHPNV6S1DxfvEZ7"
+APIKEY = "sk-proj-2vkoZfiMB1YJXyltgtNWT3BlbkFJX7efKeVVtQ3qfrWQBhqb"

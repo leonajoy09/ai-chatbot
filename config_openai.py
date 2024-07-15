@@ -11,6 +11,6 @@ logging.basicConfig(level=logging.DEBUG)
 os.environ['CURL_CA_BUNDLE'] = (r"C:\Users\joyleo\Downloads\cacert-2024-07-02.pem")
 
 # Set your OpenAI API key here
-openai.api_key = "sk-proj-8gosgQLsvWUoF6g4iPgnT3BlbkFJZHxOCpHPNV6S1DxfvEZ7"
+openai.api_key = "sk-proj-2vkoZfiMB1YJXyltgtNWT3BlbkFJX7efKeVVtQ3qfrWQBhqb"
 if not openai.api_key:
     raise ValueError("OpenAI API key is not set. Please set the OPENAI_API_KEY environment variable.")

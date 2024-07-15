@@ -11,6 +11,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain_community.llms import OpenAI
 import openai
 import httpx
+from langchain.prompts import ChatPromptTemplate, ChatTemplate, HumanMessage
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -64,17 +65,30 @@ def create_index(directory_path):
     
     return faiss_index
 
-def query_index(index, query):
+def query_index(index, query, chat_history):
     # Querying the FAISS index
     results = index.similarity_search(query)
     logging.info(f"Found {len(results)} relevant documents")
 
-    # Using the retrieved documents to generate an answer
-    chain = load_qa_chain(OpenAI(model="ft:gpt-3.5-turbo-0125:personal::9bmeZOoz"))
-    answer = chain({"input_documents": results, "question": query})
+    # Prepare the documents content to provide as context
+    context = " ".join([doc.page_content for doc in results])
     
-    # Extract the output text and format it as bullet points
-    output_text = answer['output_text']
+    # Create a prompt for the language model
+    prompt_template = ChatPromptTemplate.from_messages([
+        HumanMessage(content=f"The following is a query: {query}"),
+        HumanMessage(content=f"Here is some context to help you answer the query: {context}"),
+        HumanMessage(content="Please provide a detailed and formatted response based on the context."),
+    ])
+    
+    prompt = ChatTemplate.from_template(prompt_template)
+    
+    # Using the OpenAI model to generate an answer
+    response = OpenAI(model="ft:gpt-3.5-turbo-0125:personal::9bmeZOoz").invoke(prompt)
+    
+    # Extract the output text
+    output_text = response['choices'][0]['message']['content']
+    
+    # Format the output as bullet points
     formatted_output = format_as_bullet_points(output_text)
     
     return formatted_output

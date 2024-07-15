@@ -28,4 +28,3 @@ if __name__ == "__main__":
     
     # To print the formatted answer
     print(answer)
-

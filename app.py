@@ -10,10 +10,10 @@ from langchain.schema import Document
 
 
 # OpenAI API key
-os.environ["OPENAI_API_KEY"] = "sk-proj-8gosgQLsvWUoF6g4iPgnT3BlbkFJZHxOCpHPNV6S1DxfvEZ7"
+os.environ["OPENAI_API_KEY"] = "sk-proj-2vkoZfiMB1YJXyltgtNWT3BlbkFJX7efKeVVtQ3qfrWQBhqb"
 
 def create_index():
-    loader = DirectoryLoader(r"C:\Users\joyleo\sample_openai\docs\cloud\azure\sef", 
+    loader = DirectoryLoader(r"C:\Users\joyleo\sample_openai\docs\cloud\azure", 
     glob="**/*.md",
     loader_cls=TextLoader)
     data = loader.load()

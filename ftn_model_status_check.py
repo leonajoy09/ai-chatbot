@@ -4,7 +4,7 @@ import httpx
 import ssl
 
 # Initializing OpenAI client
-openai.api_key = 'sk-proj-8gosgQLsvWUoF6g4iPgnT3BlbkFJZHxOCpHPNV6S1DxfvEZ7'
+openai.api_key = 'sk-proj-2vkoZfiMB1YJXyltgtNWT3BlbkFJX7efKeVVtQ3qfrWQBhqb'
 
 # Creating custom SSL context using certifi's CA bundle
 ssl_context = ssl.create_default_context(cafile=certifi.where())
