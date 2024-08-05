@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>LangChain ChatBot</title>
+    <title>CloudAssist ChatBot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script>
         async function sendMessage(event) {
@@ -15,7 +15,7 @@
             const chatWindow = document.querySelector('.chat-window');
             const userMessageHtml = `<div class="chat-message user-message"><div class="message-content">${query}</div></div>`;
             chatWindow.innerHTML += userMessageHtml;
-            chatWindow.innerHTML += `<div class="chat-message bot-message" id="typing-indicator"><div class="message-content">Bot is typing...</div></div>`;
+            chatWindow.innerHTML += `<div class="chat-message bot-message" id="typing-indicator"><div class="message-content"><em>Bot is typing...</em></div></div>`;
             queryInput.value = '';
             chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -38,16 +38,18 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <img src="{{ url_for('static', filename='Bild.png') }}" alt="CloudAssist Logo" class="logo">
+            <div class="header-title">
+                <h1>CloudAssist</h1>
+                <p>A better way to manage your queries on cloud portal</p>
+            </div>
+        </div>
         <div class="chat-window">
             {% for entry in chat_history %}
-                <div class="chat-message user-message">
+                <div class="chat-message {% if entry.user %}user-message{% else %}bot-message{% endif %}">
                     <div class="message-content">
-                        {{ entry.user }}
-                    </div>
-                </div>
-                <div class="chat-message bot-message">
-                    <div class="message-content">
-                        {{ entry.bot }}
+                        {{ entry.user or entry.bot }}
                     </div>
                 </div>
             {% endfor %}

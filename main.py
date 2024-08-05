@@ -5,7 +5,7 @@ from indexing_utils import create_index, query_index
 
 if __name__ == "__main__":
     # To define the path to the directory containing markdown files
-    directory_path = r"C:\Users\joyleo\sample_openai_copy\docs\cloud\azure\sef"
+    directory_path = r"C:\Users\joyleo\sample_openai_copy\docs\cloud\azure\sef\templates\machine_learning_workspace"
     
     # To extract content from markdown files
     documents = extract_content_from_directory(directory_path)

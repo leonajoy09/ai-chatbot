@@ -3,6 +3,7 @@ import os
 import openai
 import certifi
 import logging
+from openai import OpenAI
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -11,6 +12,6 @@ logging.basicConfig(level=logging.DEBUG)
 os.environ['CURL_CA_BUNDLE'] = (r"C:\Users\joyleo\Downloads\cacert-2024-07-02.pem")
 
 # Set your OpenAI API key here
-openai.api_key = "sk-proj-2vkoZfiMB1YJXyltgtNWT3BlbkFJX7efKeVVtQ3qfrWQBhqb"
+client = OpenAI()
 if not openai.api_key:
     raise ValueError("OpenAI API key is not set. Please set the OPENAI_API_KEY environment variable.")

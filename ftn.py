@@ -19,8 +19,11 @@ def upload_file_with_httpx(file_path, purpose):
         response.raise_for_status()
         return response.json()
 
-# Ensure you set your OpenAI API key
+
+
+# Initializing OpenAI client
 openai.api_key = 'sk-proj-2vkoZfiMB1YJXyltgtNWT3BlbkFJX7efKeVVtQ3qfrWQBhqb'
+
 
 # Path to your fine-tuning data file
 file_path = "finetuning_data.jsonl"

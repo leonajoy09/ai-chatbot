@@ -73,7 +73,7 @@ def query_index(index, query, chat_history):
     # Prepare the documents content to provide as context
     context = " ".join([doc.page_content for doc in results])
     
-    # Create a prompt for the language model
+    # Creating a prompt for the language model
     prompt_template = ChatPromptTemplate.from_messages([
         HumanMessage(content=f"The following is a query: {query}"),
         HumanMessage(content=f"Here is some context to help you answer the query: {context}"),
