@@ -1,3 +1,0 @@
-# Network & Perimeter (IBM DC)
-
-Network & Perimeter Documentation for IBM Datacenter coming soon ...

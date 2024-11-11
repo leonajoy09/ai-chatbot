@@ -1,1 +1,0 @@
-![image.png](../attachments/image-b60f3d5c-5805-4212-9d80-177d7135682d.png)
